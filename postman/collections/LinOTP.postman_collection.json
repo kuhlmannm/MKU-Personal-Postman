@@ -1,0 +1,111 @@
+{
+  "info": {
+    "_postman_id": "07809040-3c79-43a1-9f87-82e16424e97e",
+    "name": "LinOTP",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Users",
+      "id": "1094d92e-3120-482d-b326-37f7d46425ef",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://linotp-test.westeurope.cloudapp.azure.com/admin/init?genkey=1;user=mku-local;type=qrtoken",
+          "protocol": "https",
+          "host": [
+            "linotp-test",
+            "westeurope",
+            "cloudapp",
+            "azure",
+            "com"
+          ],
+          "path": [
+            "admin",
+            "init"
+          ],
+          "query": [
+            {
+              "key": "genkey",
+              "value": "1;user=mku-local;type=qrtoken"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Token",
+      "id": "d024a0f7-a62d-48ba-ab77-19376ea492ed",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://linotp-test.westeurope.cloudapp.azure.com/admin/remove?serial=OATH0002A500",
+          "protocol": "https",
+          "host": [
+            "linotp-test",
+            "westeurope",
+            "cloudapp",
+            "azure",
+            "com"
+          ],
+          "path": [
+            "admin",
+            "remove"
+          ],
+          "query": [
+            {
+              "key": "serial",
+              "value": "OATH0002A500"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "digest",
+    "digest": [
+      {
+        "key": "password",
+        "value": "37qEy7Z7slv1G06ofzQO",
+        "type": "string"
+      },
+      {
+        "key": "username",
+        "value": "admin",
+        "type": "string"
+      },
+      {
+        "key": "algorithm",
+        "value": "MD5",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "46ecf4f5-803f-4121-b2c5-73dea5f73ab3",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "ba3678a1-d0d8-4467-84b8-361f955637df",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

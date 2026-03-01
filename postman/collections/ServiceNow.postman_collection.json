@@ -1,0 +1,168 @@
+{
+  "info": {
+    "_postman_id": "bfc79be7-ff67-405b-8b1e-d860608e0479",
+    "name": "ServiceNow",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Users",
+      "id": "bde03f39-ccda-4ed5-a04b-10e22c659193",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://collegeboardlabs.service-now.com/api/now/table/sys_user_role",
+          "protocol": "https",
+          "host": [
+            "collegeboardlabs",
+            "service-now",
+            "com"
+          ],
+          "path": [
+            "api",
+            "now",
+            "table",
+            "sys_user_role"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Correlation",
+      "id": "e1f1afaa-4333-4677-a4ae-6cef3d7a6beb",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://dev95188.service-now.com/api/now/table/sc_request",
+          "protocol": "https",
+          "host": [
+            "dev95188",
+            "service-now",
+            "com"
+          ],
+          "path": [
+            "api",
+            "now",
+            "table",
+            "sc_request"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "test",
+      "id": "57fd2c62-f03a-45c2-bd31-34e547276f50",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      },
+      {
+        "key": "headerPrefix",
+        "value": "Bearer",
+        "type": "string"
+      },
+      {
+        "key": "addTokenTo",
+        "value": "queryParams",
+        "type": "string"
+      },
+      {
+        "key": "client_authentication",
+        "value": "body",
+        "type": "string"
+      },
+      {
+        "key": "clientSecret",
+        "value": "(![LT^rW~,",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://collegeboardlabs.service-now.com/oauth_token.do",
+        "type": "string"
+      },
+      {
+        "key": "clientId",
+        "value": "7217c38c4c9f9d107da57d32d9091571",
+        "type": "string"
+      },
+      {
+        "key": "audience",
+        "value": {
+          "590fb641-d14e-4e0b-9b10-5a5611610c3a": "https://kaercher.omada.cloud"
+        },
+        "type": "any"
+      },
+      {
+        "key": "tokenName",
+        "value": "OmadaLogonToken",
+        "type": "string"
+      },
+      {
+        "key": "challengeAlgorithm",
+        "value": "S256",
+        "type": "string"
+      },
+      {
+        "key": "username",
+        "value": "DE10X20484",
+        "type": "string"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://www.getpostman.com/oauth2/callback",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "gI74JS0a@#JW",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://test.salesforce.com/services/oauth2/authorize",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "a410a0e1-69b7-4a0a-83ab-f3eefcc01452",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "9247cdcc-e015-45e8-82eb-3a148857ccd7",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

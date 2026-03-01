@@ -1,0 +1,1812 @@
+{
+  "info": {
+    "_postman_id": "7ed81d15-4f5d-4c57-8cce-a1dc07630cbc",
+    "name": "Users (Okta API)",
+    "description": "The [Okta User API](/docs/api/rest/users.html) provides operations to manage users in your organization.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create User",
+      "item": [
+        {
+          "name": "Create User with Password & Recovery Question",
+          "id": "ee753184-173d-4476-9ee2-d3e5273712f5",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profile\": {\n    \"firstName\": \"Isaac\",\n    \"lastName\": \"Brock\",\n    \"email\": \"isaac@{{email-suffix}}\",\n    \"login\": \"isaac@{{email-suffix}}\"\n  },\n  \"credentials\": {\n    \"password\" : { \"value\": \"{{password}}\" },\n    \"recovery_question\": {\n      \"question\": \"Who's a major player in the cowboy scene?\",\n      \"answer\": \"Annie Oakley\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users?activate=false",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "activate",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Activated User with Password & Recovery Question",
+          "id": "372bff05-96b4-4f37-843c-ed15ba2c38bc",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profile\": {\n    \"firstName\": \"Isaac\",\n    \"lastName\": \"Brock\",\n    \"email\": \"isaac@{{email-suffix}}\",\n    \"login\": \"isaac@{{email-suffix}}\"\n  },\n  \"credentials\": {\n    \"password\" : { \"value\": \"{{password}}\" },\n    \"recovery_question\": {\n      \"question\": \"Who's a major player in the cowboy scene?\",\n      \"answer\": \"Annie Oakley\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users?activate=true",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "activate",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create User without Credentials",
+          "id": "822db1d8-ac9a-4097-bd3d-e79761bff667",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profile\": {\n    \"firstName\": \"Isaac\",\n    \"lastName\": \"Brock\",\n    \"email\": \"isaac@{{email-suffix}}\",\n    \"login\": \"isaac@{{email-suffix}}\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users?activate=false",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "activate",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Activated User without Credentials",
+          "id": "5beefdc3-23ae-4b05-90b5-d0c5702de09b",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profile\": {\n    \"firstName\": \"Isaac\",\n    \"lastName\": \"Brock\",\n    \"email\": \"isaac@{{email-suffix}}\",\n    \"login\": \"isaac@{{email-suffix}}\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users?activate=true",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "activate",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create User with Password",
+          "id": "a6da77e0-7d4b-41b2-9346-74f1605e6d70",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profile\": {\n    \"firstName\": \"Isaac\",\n    \"lastName\": \"Brock\",\n    \"email\": \"isaac@{{email-suffix}}\",\n    \"login\": \"isaac@{{email-suffix}}\"\n  },\n  \"credentials\": {\n    \"password\" : { \"value\": \"{{password}}\" }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users?activate=false",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "activate",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Activated User with Password",
+          "id": "508e9b3c-62ca-4e5d-8cd1-f6164278db34",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profile\": {\n    \"firstName\": \"Isaac\",\n    \"lastName\": \"Brock\",\n    \"email\": \"isaac@{{email-suffix}}\",\n    \"login\": \"isaac@{{email-suffix}}\"\n  },\n  \"credentials\": {\n    \"password\" : { \"value\": \"{{password}}\" }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users?activate=true",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "activate",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create User with Recovery Question",
+          "id": "06a63641-2175-45de-bb9f-28ebf703cd8f",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profile\": {\n    \"firstName\": \"Isaac\",\n    \"lastName\": \"Brock\",\n    \"email\": \"isaac@{{email-suffix}}\",\n    \"login\": \"isaac@{{email-suffix}}\"\n  },\n  \"credentials\": {\n    \"recovery_question\": {\n      \"question\": \"Who's a major player in the cowboy scene?\",\n      \"answer\": \"Annie Oakley\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users?activate=false",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "activate",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Activated User with Recovery Question",
+          "id": "39d2e935-b786-4054-8392-175b46904b6d",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profile\": {\n    \"firstName\": \"Isaac\",\n    \"lastName\": \"Brock\",\n    \"email\": \"isaac@{{email-suffix}}\",\n    \"login\": \"isaac@{{email-suffix}}\"\n  },\n  \"credentials\": {\n    \"recovery_question\": {\n      \"question\": \"Who's a major player in the cowboy scene?\",\n      \"answer\": \"Annie Oakley\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users?activate=true",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "activate",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create User in Group",
+          "id": "6ce63328-ec0f-457e-967a-c94cc2f09f43",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profile\": {\n    \"firstName\": \"Isaac\",\n    \"lastName\": \"Brock\",\n    \"email\": \"isaac@{{email-suffix}}\",\n    \"login\": \"isaac@{{email-suffix}}\"\n  },\n  \"groupIds\": [\n    \"{{groupId}}\"\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users?activate=false",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "activate",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create User with Non-Default User Type",
+          "id": "654501d7-e766-494f-83f4-d44e427a26d6",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profile\": {\n    \"firstName\": \"Isaac\",\n    \"lastName\": \"Brock\",\n    \"email\": \"isaac@{{email-suffix}}\",\n    \"login\": \"isaac@{{email-suffix}}\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users?activate=false",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "activate",
+                  "value": "false"
+                }
+              ]
+            },
+            "description": "First use the User Types API to create a new User Type.  Then fill in {{typeId}} in your environment with the 20-character ID of the new type.\n\nOnce you create a User of that type, you will not be able to delete the User Type without first deleting the User."
+          },
+          "response": []
+        }
+      ],
+      "id": "72f965b6-7aa4-447d-9743-a5dce7581a25"
+    },
+    {
+      "name": "Credential Operations",
+      "item": [
+        {
+          "name": "Set Password",
+          "id": "929fa391-767a-469f-b004-6e1d3f5059e6",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"credentials\": {\n    \"password\" : { \"value\": \"{{password}}\" }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password",
+          "id": "59f9f307-8530-4003-9e98-908402aa10d5",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oldPassword\": { \"value\": \"{{password}}\" },\n  \"newPassword\": { \"value\": \"uTVM,TPw55\" }\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}/credentials/change_password",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}",
+                "credentials",
+                "change_password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Set Recovery Credential",
+          "id": "28c26db4-b6fb-49d4-bf7f-3d49c163e55b",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"credentials\": {\n    \"recovery_question\": {\n      \"question\": \"Who's a major player in the cowboy scene?\",\n      \"answer\": \"Annie Oakley\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Change Recovery Question",
+          "id": "f2c673cf-ed71-4e13-b493-6a06d5eb1227",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": { \"value\": \"{{password}}\" }, \n    \"recovery_question\": {\n      \"question\" : \"What happens when I update my question\",\n      \"answer\": \"My recovery credentials are updated\" \n    } \n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}/credentials/change_recovery_question",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}",
+                "credentials",
+                "change_recovery_question"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password (Validate Security Answer)",
+          "id": "f3c1b210-d574-4c76-9f74-e82776299e6b",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": { \"value\": \"{{password}}\" }, \n    \"recovery_question\": { \"answer\": \"Annie Oakley\" } \n}"
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}/credentials/forgot_password?sendEmail=false",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}",
+                "credentials",
+                "forgot_password"
+              ],
+              "query": [
+                {
+                  "key": "sendEmail",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password (One Time Code)",
+          "id": "f1df9b22-82b9-480e-b726-c1eae333e00d",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}/credentials/forgot_password?sendEmail=false",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}",
+                "credentials",
+                "forgot_password"
+              ],
+              "query": [
+                {
+                  "key": "sendEmail",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "880d2fce-aa41-40fa-baa4-52570fa94af7"
+    },
+    {
+      "name": "Lifecycle Operations",
+      "item": [
+        {
+          "name": "Activate User",
+          "id": "c0464cf0-847a-405b-be80-91386fee0a2b",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}/lifecycle/activate?sendEmail=false",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}",
+                "lifecycle",
+                "activate"
+              ],
+              "query": [
+                {
+                  "key": "sendEmail",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deactivate User",
+          "id": "2335b2ff-224b-44d3-bb0b-a1c94b72098d",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}/lifecycle/deactivate",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}",
+                "lifecycle",
+                "deactivate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unlock User",
+          "id": "83990b96-0184-4371-88c6-ad284692741a",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}/lifecycle/unlock",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}",
+                "lifecycle",
+                "unlock"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Expire Password",
+          "id": "f12519cf-f15a-4ad5-86fc-7b3bc29d8c3a",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}/lifecycle/expire_password",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}",
+                "lifecycle",
+                "expire_password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "id": "27626a0e-992c-4833-8bea-f77df39ca7b6",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}/lifecycle/reset_password?sendEmail=false",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}",
+                "lifecycle",
+                "reset_password"
+              ],
+              "query": [
+                {
+                  "key": "sendEmail",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Set Temp Password",
+          "id": "688f4e5b-2e56-49c6-8311-25fab16045a6",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}/lifecycle/expire_password?tempPassword=true",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}",
+                "lifecycle",
+                "expire_password"
+              ],
+              "query": [
+                {
+                  "key": "tempPassword",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Suspend User",
+          "id": "3bf45e05-c31f-428b-b38a-7286d4860ac9",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}/lifecycle/suspend",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}",
+                "lifecycle",
+                "suspend"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unsuspend User",
+          "id": "2437374d-7ff4-4167-ae46-2d162f615738",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}/lifecycle/unsuspend",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}",
+                "lifecycle",
+                "unsuspend"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "id": "b0d89a63-df60-4f86-9e39-ca7a49bba60c",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/v1/users/{{userId}}",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "{{userId}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "cf57cbd1-7cab-46f5-bc82-52a3498bee3c"
+    },
+    {
+      "name": "List Users",
+      "item": [
+        {
+          "name": "List Users",
+          "id": "d6b462b2-db05-475f-865c-513e8f134616",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/v1/users?limit=25",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Users with Search",
+          "id": "45297ec1-4135-4629-b307-061e92c78b58",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/v1/users?search=profile.department eq \"Engineering\" ",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "profile.department eq \"Engineering\" "
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Users Updated after Timestamp",
+          "id": "54d0dac1-96d2-4690-83a9-e689e09cd26a",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/v1/users?filter=status eq \"ACTIVE\" and lastUpdated gt \"2014-02-01T00:00:00.000Z\"&limit=25",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "filter",
+                  "value": "status eq \"ACTIVE\" and lastUpdated gt \"2014-02-01T00:00:00.000Z\""
+                },
+                {
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Active Users",
+          "id": "29157bb1-4b3b-4b6f-abe4-c55ec27f0a2b",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/v1/users?filter=status eq \"ACTIVE\"&limit=25",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "filter",
+                  "value": "status eq \"ACTIVE\""
+                },
+                {
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Provisioned Users",
+          "id": "ca97741f-1b16-4c50-8733-372b5edebcd4",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/v1/users?filter=status eq \"PROVISIONED\"&limit=25",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "filter",
+                  "value": "status eq \"PROVISIONED\""
+                },
+                {
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Staged Users",
+          "id": "2c05469c-4760-48b9-8cdf-fb92a7c6ef06",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/v1/users?filter=status eq \"STAGED\"&limit=25",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "filter",
+                  "value": "status eq \"STAGED\""
+                },
+                {
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Recovery Users",
+          "id": "54324923-74b9-4b8f-a7cb-ce991e598794",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/v1/users?filter=status eq \"RECOVERY\"&limit=25",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "filter",
+                  "value": "status eq \"RECOVERY\""
+                },
+                {
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Deprovisioned Users",
+          "id": "6ebb88f1-77ab-47e4-8e08-55755f7eba76",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/v1/users?filter=status eq \"DEPROVISIONED\"&limit=25",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "filter",
+                  "value": "status eq \"DEPROVISIONED\""
+                },
+                {
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Password Expired Users",
+          "id": "12e16b01-d359-4abf-a60b-7d4ab2f85b18",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/v1/users?filter=status eq \"PASSWORD_EXPIRED\"&limit=25",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "filter",
+                  "value": "status eq \"PASSWORD_EXPIRED\""
+                },
+                {
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Locked Users",
+          "id": "d2029041-5b12-49c4-8f81-c622ea0ad163",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "SSWS {{apikey}}"
+              }
+            ],
+            "url": {
+              "raw": "{{url}}/api/v1/users?filter=status eq \"LOCKED_OUT\"&limit=25",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "filter",
+                  "value": "status eq \"LOCKED_OUT\""
+                },
+                {
+                  "key": "limit",
+                  "value": "25"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "9a3bad1f-826f-45d0-b415-f5f47832b82e"
+    },
+    {
+      "name": "Reset Factors",
+      "id": "caec6480-a63c-4226-972c-80f51d1d452e",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "SSWS{{apikey}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "{{url}}/api/v1/users/{{userId}}/lifecycle/reset_factors",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "users",
+            "{{userId}}",
+            "lifecycle",
+            "reset_factors"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User",
+      "id": "3376233b-cead-412e-9a15-ec8fc62f3594",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "SSWS {{apikey}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "https://dev-411585-admin.okta.com/api/v1/users",
+          "protocol": "https",
+          "host": [
+            "dev-411585-admin",
+            "okta",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Current User",
+      "id": "04c72bf5-2af5-4218-8c9b-b59190a369f3",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "SSWS {{apikey}}"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/api/v1/users/me",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "users",
+            "me"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Assigned App Links",
+      "id": "64d47652-8251-4cc9-8f8c-1916cfa6a4d1",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "SSWS {{apikey}}"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/api/v1/users/{{userId}}/appLinks",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "users",
+            "{{userId}}",
+            "appLinks"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Groups for User",
+      "id": "4a51741c-a750-4f30-bc0b-8b3240f08a21",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "SSWS {{apikey}}"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/api/v1/users/{{userId}}/groups",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "users",
+            "{{userId}}",
+            "groups"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Find User",
+      "id": "1f1013b3-e343-4857-a5fe-1121e30db7f1",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "SSWS {{apikey}}"
+          }
+        ],
+        "url": {
+          "raw": "{{url}}/api/v1/users?q=susan&limit=1",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "users"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "susan"
+            },
+            {
+              "key": "limit",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Clear User Sessions",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Status code is 204\"] = responseCode.code === 204;"
+            ]
+          }
+        }
+      ],
+      "id": "c9eb9d40-0785-4962-b962-2d9a506f71d2",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "SSWS {{apikey}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "{{url}}/api/v1/users/{{userId}}/sessions",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "users",
+            "{{userId}}",
+            "sessions"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "f708d80a-0ed6-4bad-882e-4ba845caf944",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "ceedccb8-eceb-496f-83a5-ab8505c4e042",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

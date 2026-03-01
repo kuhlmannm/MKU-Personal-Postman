@@ -1,0 +1,227 @@
+{
+  "info": {
+    "_postman_id": "20a7a329-d811-42c7-8ce9-811c0a644f44",
+    "name": "SuccessFactors",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "test Department",
+      "id": "e24528d0-8f76-4e84-9a36-553eb1b8499c",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "OBISAPI@olympuseurT2",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "Welcome1",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api5.successfactors.eu/odata/v2/FODepartment?$select=externalCode,description,name,parent,status",
+          "protocol": "https",
+          "host": [
+            "api5",
+            "successfactors",
+            "eu"
+          ],
+          "path": [
+            "odata",
+            "v2",
+            "FODepartment"
+          ],
+          "query": [
+            {
+              "key": "$select",
+              "value": "externalCode,description,name,parent,status"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "test Identity",
+      "id": "10309fab-15a5-46e8-8ac3-fa204352a576",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "part1802DC2",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "sfadmin@SFPART034248",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://apisalesdemo2.successfactors.eu/odata/v2/User?$select=userId,defaultFullName,empInfo/jobInfoNav/company,empInfo/jobInfoNav/emailAddress&$filter=userId%20in%20%27104041%27",
+          "protocol": "https",
+          "host": [
+            "apisalesdemo2",
+            "successfactors",
+            "eu"
+          ],
+          "path": [
+            "odata",
+            "v2",
+            "User"
+          ],
+          "query": [
+            {
+              "key": "$select",
+              "value": "userId,defaultFullName,empInfo/jobInfoNav/company,empInfo/jobInfoNav/emailAddress"
+            },
+            {
+              "key": "$filter",
+              "value": "userId%20in%20%27104041%27"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "test Division Assignment",
+      "id": "68bebb6b-472c-4254-a24a-86de894e49c8",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "username",
+              "value": "OBISAPI@olympuseurT2",
+              "type": "string"
+            },
+            {
+              "key": "password",
+              "value": "Welcome1",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://api5.successfactors.eu/odata/v2/FODivision?$select=externalCode,name&$filter=status eq 'A'",
+          "protocol": "https",
+          "host": [
+            "api5",
+            "successfactors",
+            "eu"
+          ],
+          "path": [
+            "odata",
+            "v2",
+            "FODivision"
+          ],
+          "query": [
+            {
+              "key": "$select",
+              "value": "externalCode,name"
+            },
+            {
+              "key": "$filter",
+              "value": "status eq 'A'"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "id": "dc1bb9eb-c9d8-476d-ad90-dd428c810ef0",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Update Email",
+      "id": "dde81b52-2967-4b40-8f32-ce1859c1ef52",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n \"__metadata\": { \"uri\":\"PerEmail\" },\r\n \"emailType\": \"8448\",\r\n \"personIdExternal\": \"109007\",\r\n\"emailAddress\": \"martin.kuhlmann@omadaidentity.com\"\r\n }\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://apisalesdemo2.successfactors.eu/odata/v2/upsert",
+          "protocol": "https",
+          "host": [
+            "apisalesdemo2",
+            "successfactors",
+            "eu"
+          ],
+          "path": [
+            "odata",
+            "v2",
+            "upsert"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "password",
+        "value": "part1802DC2",
+        "type": "string"
+      },
+      {
+        "key": "username",
+        "value": "sfadmin@SFPART034248",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "467d0a6f-233f-47d0-993d-02cd43fbaa63",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "e7b71881-4106-47b2-89c7-d25e4861107f",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

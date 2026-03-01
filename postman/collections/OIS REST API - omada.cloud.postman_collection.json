@@ -569,27 +569,27 @@
   ],
   "variable": [
     {
-      "id": "83b00ddd-6b00-4546-89ba-c175b3e991d2",
+      "id": "30f67a69-c2a7-454e-88bb-ed8f815bee73",
       "key": "OmadaInstanceURL",
       "value": "mku-pdi.omada.cloud"
     },
     {
-      "id": "329b570f-812a-42fa-8782-64443fc7a2fc",
+      "id": "5e70952c-8608-4c64-a044-8374f58cc526",
       "key": "AuthAppClientID",
       "value": "84e9acf6-4bd2-4711-9f32-b39440228920"
     },
     {
-      "id": "85e1632d-a3c4-4c8e-a30c-f7c44d16bcc0",
+      "id": "b4fde413-adf5-4326-87cf-e4eb359c07ae",
       "key": "AuthAppClientSecret",
       "value": "snI8Q~qvaUv0ZHB8fSiMX8Kk2E-OJ1IOEQGrqaVv"
     },
     {
-      "id": "7a428a82-bb22-4a98-9c5f-d845fb118597",
+      "id": "2bbc6032-352f-458b-af91-dff7aa5c7125",
       "key": "OpenIDAppScope",
       "value": "api://b11d68be-9846-4a64-96d7-06c31f2f6e9f/.default"
     },
     {
-      "id": "f8816d1d-6fd3-4943-95ba-c30efaa844b9",
+      "id": "b238ad71-8067-4baa-8d0e-93ca329cc6a2",
       "key": "AuthAppAccessTokenURL",
       "value": "https://login.microsoftonline.com/959f9211-66fe-4074-bf89-27a4a971cb5c/oauth2/v2.0/token"
     }

@@ -1,0 +1,49 @@
+{
+  "info": {
+    "_postman_id": "8f2cd769-2cf2-4f14-adc2-2a8e7d212dd1",
+    "name": "CyberArk",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "CyberArk Users",
+      "id": "e19c4b1a-d5bc-47e8-94b2-4011ab983c75",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "Cyberark1",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "Omada-user",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://services-uscentral.skytap.com:14687/CyberArk/scim/v2/Users",
+          "protocol": "http",
+          "host": [
+            "services-uscentral",
+            "skytap",
+            "com"
+          ],
+          "port": "14687",
+          "path": [
+            "CyberArk",
+            "scim",
+            "v2",
+            "Users"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
