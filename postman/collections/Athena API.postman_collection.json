@@ -1,0 +1,3414 @@
+{
+  "info": {
+    "_postman_id": "76c4d272-dd51-4ece-95c7-76296fa80718",
+    "name": "Athena API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Authentication",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "4207d11a-f11b-4d47-b26f-a0eb8443ab54",
+                "exec": [
+                  "// Extract access_token from response and set as collection variable",
+                  "const responseJson = pm.response.json();",
+                  "",
+                  "if (responseJson.access_token) {",
+                  "    pm.collectionVariables.set(\"access_token\", responseJson.access_token);",
+                  "    console.log(\"Access token saved to collection variables\");",
+                  "} else {",
+                  "    console.log(\"No access_token found in response\");",
+                  "}",
+                  "",
+                  "// Optional: Test to verify successful authentication",
+                  "pm.test(\"Authentication successful\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(responseJson.access_token).to.exist;",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "packages": {},
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "67161e15-bc95-41a3-8a79-57a78070b3c1",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"grant_type\": \"client_credentials\",\r\n  \"client_id\": \"{{tenant_name}}\",\r\n  \"client_secret\": \"{{client_secret}}\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://athena-api-development.azurewebsites.net/api/login",
+              "protocol": "https",
+              "host": [
+                "athena-api-development",
+                "azurewebsites",
+                "net"
+              ],
+              "path": [
+                "api",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "b791d318-1258-4b3b-8524-b81c989e75d5"
+    },
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "Context",
+          "item": [
+            {
+              "name": "type",
+              "item": [
+                {
+                  "name": "{typeName}",
+                  "item": [
+                    {
+                      "name": "/api/Context/type/:typeName",
+                      "id": "3428d9f6-050e-43f8-bb22-f488685f2528",
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "{{tenant_name}}"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Context/type/:typeName?page=1&pageSize=20&search=string",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Context",
+                            "type",
+                            ":typeName"
+                          ],
+                          "query": [
+                            {
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "key": "pageSize",
+                              "value": "20"
+                            },
+                            {
+                              "key": "search",
+                              "value": "string"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "typeName",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "d4b76a28-04e7-44ca-b9d4-7a8fa8eccfb4",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Tenant",
+                                "value": "string"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/Context/type/:typeName?page=1&pageSize=20&search=string",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "Context",
+                                "type",
+                                ":typeName"
+                              ],
+                              "query": [
+                                {
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "key": "pageSize",
+                                  "value": "20"
+                                },
+                                {
+                                  "key": "search",
+                                  "value": "string"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "typeName",
+                                  "value": "string"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "61485ec4-922f-4110-9407-d8290ea6800d"
+                }
+              ],
+              "id": "75f3c551-2ac2-4b30-b6b0-4aa9351c58c7"
+            },
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "/api/Context/:name",
+                  "id": "9979bdee-ee75-4830-9e5c-79ac85c65f8d",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Context/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Context",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "name",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "677212f1-ed8e-43d9-a660-458afb8be5f1",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Context/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Context",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/Context/:name",
+                  "id": "3730f572-ae3d-4bb5-8248-ea66bdc11094",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"string\",\n  \"contextTypeId\": 1510,\n  \"parentId\": 1140,\n  \"ownerId\": 9138,\n  \"businessKey\": \"string\",\n  \"parentBusinessKey\": \"string\",\n  \"ownerIdentityId\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Context/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Context",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "name",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b9bd29b5-4a59-48de-9f0f-a23089070a92",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"string\",\n  \"contextTypeId\": 1510,\n  \"parentId\": 1140,\n  \"ownerId\": 9138,\n  \"businessKey\": \"string\",\n  \"parentBusinessKey\": \"string\",\n  \"ownerIdentityId\": \"string\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Context/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Context",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/Context/:name",
+                  "id": "9f78e670-e4f0-4ebc-8d97-27dbe2531040",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Context/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Context",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "name",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "5cbfae7c-d27a-4875-901f-1bd43eaf662a",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Context/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Context",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ],
+              "id": "a2c5c34e-790d-4917-8531-56ac2eb40e9d"
+            },
+            {
+              "name": "bulk",
+              "item": [
+                {
+                  "name": "/api/Context/bulk",
+                  "id": "31aa7157-b289-4033-8a29-edbaf7e47a3d",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"name\": \"string\",\n    \"contextTypeId\": 9506,\n    \"parentId\": 7839,\n    \"ownerId\": 9036,\n    \"businessKey\": \"string\",\n    \"parentBusinessKey\": \"string\",\n    \"ownerIdentityId\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"contextTypeId\": 8549,\n    \"parentId\": 993,\n    \"ownerId\": 1216,\n    \"businessKey\": \"string\",\n    \"parentBusinessKey\": \"string\",\n    \"ownerIdentityId\": \"string\"\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Context/bulk",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Context",
+                        "bulk"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d4c03b50-9f9f-4c74-8ff0-1071825313b1",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"name\": \"string\",\n    \"contextTypeId\": 9506,\n    \"parentId\": 7839,\n    \"ownerId\": 9036,\n    \"businessKey\": \"string\",\n    \"parentBusinessKey\": \"string\",\n    \"ownerIdentityId\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"contextTypeId\": 8549,\n    \"parentId\": 993,\n    \"ownerId\": 1216,\n    \"businessKey\": \"string\",\n    \"parentBusinessKey\": \"string\",\n    \"ownerIdentityId\": \"string\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Context/bulk",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Context",
+                            "bulk"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/Context/bulk",
+                  "id": "fd403d4d-2b29-4149-8da2-0cc9585cb7ac",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  \"string\",\n  \"string\"\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Context/bulk",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Context",
+                        "bulk"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "11eb1645-795b-4f3f-946c-1afaab70ad14",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  \"string\",\n  \"string\"\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Context/bulk",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Context",
+                            "bulk"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ],
+              "id": "82cf7790-5c63-4c47-9901-1055fefee1f4"
+            },
+            {
+              "name": "/api/Context",
+              "id": "b5c0f825-e5b9-4ca5-83f4-b8f1f66fcea6",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Context?page=1&pageSize=20&search=string&type=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Context"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "string"
+                    },
+                    {
+                      "key": "type",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "bcfe5b4c-e810-4b35-95bb-e2fdbd137bfb",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Context?page=1&pageSize=20&search=string&type=string",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Context"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "key": "search",
+                          "value": "string"
+                        },
+                        {
+                          "key": "type",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "/api/Context",
+              "id": "3ac706ec-6900-4dcb-8c1b-1a6a191a86f1",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"contextTypeId\": 1510,\n  \"parentId\": 1140,\n  \"ownerId\": 9138,\n  \"businessKey\": \"string\",\n  \"parentBusinessKey\": \"string\",\n  \"ownerIdentityId\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Context",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Context"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "6ab79f3b-c49c-4f9c-8ab3-33d7569c404e",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"string\",\n  \"contextTypeId\": 1510,\n  \"parentId\": 1140,\n  \"ownerId\": 9138,\n  \"businessKey\": \"string\",\n  \"parentBusinessKey\": \"string\",\n  \"ownerIdentityId\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Context",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Context"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "dcca0a2a-92be-49b6-b181-cdc2ff167ec3"
+        },
+        {
+          "name": "ContextAssignment",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "/api/ContextAssignment/:id",
+                  "id": "c6eb262a-820d-400f-aa0a-d6906f4f32d0",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      },
+                      {
+                        "key": "",
+                        "value": "",
+                        "type": "text"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ContextAssignment/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ContextAssignment",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": ""
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "7804f8b3-5393-4596-ac2c-60cc8587b291",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/ContextAssignment/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "ContextAssignment",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1498"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/ContextAssignment/:id",
+                  "id": "5beb40df-9303-4bbd-908c-d1749762b331",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"contextBusinessKey\": \"string\",\n  \"contextId\": 7447,\n  \"identityIdentityID\": \"string\",\n  \"identityId\": 3356\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ContextAssignment/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ContextAssignment",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1498"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "290120c1-6cc1-445c-a684-d3e32dfd92df",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"contextBusinessKey\": \"string\",\n  \"contextId\": 7447,\n  \"identityIdentityID\": \"string\",\n  \"identityId\": 3356\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/ContextAssignment/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "ContextAssignment",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1498"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/ContextAssignment/:id",
+                  "id": "91bd1a59-f31e-41b6-af71-3360e6cf6728",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ContextAssignment/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ContextAssignment",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": "1498"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "0fb6d133-11ba-44c9-97e9-fad4525548c9",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/ContextAssignment/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "ContextAssignment",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1498"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ],
+              "id": "3b4d0c28-2026-43f5-ad2d-d416803a6609"
+            },
+            {
+              "name": "bulk",
+              "item": [
+                {
+                  "name": "/api/ContextAssignment/bulk",
+                  "id": "3f80f71b-2aae-4cda-9471-6fcda50c329d",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"contextBusinessKey\": \"string\",\n    \"contextId\": 6345,\n    \"identityIdentityID\": \"string\",\n    \"identityId\": 4496\n  },\n  {\n    \"contextBusinessKey\": \"string\",\n    \"contextId\": 7429,\n    \"identityIdentityID\": \"string\",\n    \"identityId\": 4496\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ContextAssignment/bulk",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ContextAssignment",
+                        "bulk"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "183859c9-4f63-4ea5-ac82-97bc7b5fccad",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"contextBusinessKey\": \"string\",\n    \"contextId\": 6345,\n    \"identityIdentityID\": \"string\",\n    \"identityId\": 4496\n  },\n  {\n    \"contextBusinessKey\": \"string\",\n    \"contextId\": 7429,\n    \"identityIdentityID\": \"string\",\n    \"identityId\": 4496\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/ContextAssignment/bulk",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "ContextAssignment",
+                            "bulk"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/ContextAssignment/bulk",
+                  "id": "9cf108fa-2fc5-475b-90f4-9244dc7ef093",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"contextBusinessKey\": \"string\",\n    \"contextId\": 6345,\n    \"identityIdentityID\": \"string\",\n    \"identityId\": 4496\n  },\n  {\n    \"contextBusinessKey\": \"string\",\n    \"contextId\": 7429,\n    \"identityIdentityID\": \"string\",\n    \"identityId\": 4496\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ContextAssignment/bulk",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ContextAssignment",
+                        "bulk"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "a08ec1b6-b3de-4543-96ee-e6b3a397c842",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"contextBusinessKey\": \"string\",\n    \"contextId\": 6345,\n    \"identityIdentityID\": \"string\",\n    \"identityId\": 4496\n  },\n  {\n    \"contextBusinessKey\": \"string\",\n    \"contextId\": 7429,\n    \"identityIdentityID\": \"string\",\n    \"identityId\": 4496\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/ContextAssignment/bulk",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "ContextAssignment",
+                            "bulk"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ],
+              "id": "bfe6f8af-d227-4ea7-b05c-351aa43d5950"
+            },
+            {
+              "name": "/api/ContextAssignment",
+              "id": "a0f009b6-a32d-4398-b25d-a0a5facb4c40",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ContextAssignment?page=1&pageSize=20&search=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ContextAssignment"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "3c65ec61-a14c-424e-b47b-f92be511a785",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ContextAssignment?page=1&pageSize=20&search=string",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ContextAssignment"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "key": "search",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "/api/ContextAssignment",
+              "id": "04a9f1fe-ef0d-4e63-b162-25920aad9379",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"contextBusinessKey\": \"string\",\n  \"contextId\": 7447,\n  \"identityIdentityID\": \"string\",\n  \"identityId\": 3356\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/ContextAssignment",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ContextAssignment"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "5fcd5688-3c81-40ea-82fe-38230bd4aae2",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"contextBusinessKey\": \"string\",\n  \"contextId\": 7447,\n  \"identityIdentityID\": \"string\",\n  \"identityId\": 3356\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ContextAssignment",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ContextAssignment"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "6ab40bf0-02d6-4a99-a059-6827e20400f5"
+        },
+        {
+          "name": "ContextType",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "/api/ContextType/:name",
+                  "id": "45a4d5d2-aaa3-4532-b2ec-cd8f723b4743",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ContextType/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ContextType",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "key": "name",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "4dd6acf4-701a-42b7-826f-71c7331194e4",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/ContextType/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "ContextType",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ],
+              "id": "ee7be9fb-9883-43a7-aea7-88f4d044240f"
+            },
+            {
+              "name": "/api/ContextType",
+              "id": "26397627-4ce7-4839-893d-1e7df1777763",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/ContextType",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ContextType"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "f1584648-e4a4-485a-936e-75efc9beb06f",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ContextType",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ContextType"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "/api/ContextType",
+              "id": "7dba3338-151d-40e3-ae89-c9d1f2b748ea",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/ContextType",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "ContextType"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1effef1e-2e53-45ae-b4c5-d879bf15a99e",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/ContextType",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "ContextType"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "6320e30f-bab4-4cde-b622-2352a62f0b84"
+        },
+        {
+          "name": "Identity",
+          "item": [
+            {
+              "name": "{login}",
+              "item": [
+                {
+                  "name": "/api/Identity/:login",
+                  "id": "0d4e221b-1845-4bfd-971d-99dc1d705bc2",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Identity/P0001",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Identity",
+                        "P0001"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "09aa9074-7099-4db5-a744-1ddc034e16e2",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Identity/:login",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Identity",
+                            ":login"
+                          ],
+                          "variable": [
+                            {
+                              "key": "login",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/Identity/:login",
+                  "id": "8b37adcb-f379-4ac7-b975-2d8107e8bf41",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"login\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"statusId\": 4271,\n  \"jobTitle\": \"string\",\n  \"validFrom\": \"1956-06-10T21:45:47.756Z\",\n  \"validTo\": \"2005-02-25T17:35:57.656Z\",\n  \"departmentId\": 6945,\n  \"companyId\": 9161,\n  \"managerId\": 6273,\n  \"country\": \"string\",\n  \"countryId\": 7512,\n  \"countryBusinessKey\": \"string\",\n  \"categoryId\": 540,\n  \"employeeID\": \"string\",\n  \"uid\": \"string\",\n  \"identityID\": \"string\",\n  \"departmentBusinessKey\": \"string\",\n  \"companyBusinessKey\": \"string\",\n  \"managerIdentityId\": \"string\",\n  \"orgUnitId\": 9138,\n  \"orgUnitBusinessKey\": \"string\",\n  \"locationId\": 1003,\n  \"locationBusinessKey\": \"string\",\n  \"jobTitleId\": 4536,\n  \"jobTitleBusinessKey\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Identity/:login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Identity",
+                        ":login"
+                      ],
+                      "variable": [
+                        {
+                          "key": "login",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "c1792e81-f393-4ec3-8257-b3c3c1895ad6",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"login\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"statusId\": 4271,\n  \"jobTitle\": \"string\",\n  \"validFrom\": \"1956-06-10T21:45:47.756Z\",\n  \"validTo\": \"2005-02-25T17:35:57.656Z\",\n  \"departmentId\": 6945,\n  \"companyId\": 9161,\n  \"managerId\": 6273,\n  \"country\": \"string\",\n  \"countryId\": 7512,\n  \"countryBusinessKey\": \"string\",\n  \"categoryId\": 540,\n  \"employeeID\": \"string\",\n  \"uid\": \"string\",\n  \"identityID\": \"string\",\n  \"departmentBusinessKey\": \"string\",\n  \"companyBusinessKey\": \"string\",\n  \"managerIdentityId\": \"string\",\n  \"orgUnitId\": 9138,\n  \"orgUnitBusinessKey\": \"string\",\n  \"locationId\": 1003,\n  \"locationBusinessKey\": \"string\",\n  \"jobTitleId\": 4536,\n  \"jobTitleBusinessKey\": \"string\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Identity/:login",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Identity",
+                            ":login"
+                          ],
+                          "variable": [
+                            {
+                              "key": "login",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/Identity/:login",
+                  "id": "1ee177cd-f511-468c-be0f-73bcfa1b56cb",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Identity/:login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Identity",
+                        ":login"
+                      ],
+                      "variable": [
+                        {
+                          "key": "login",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "6aa737f1-8a09-4e4a-86b9-5570a9a69581",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Identity/:login",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Identity",
+                            ":login"
+                          ],
+                          "variable": [
+                            {
+                              "key": "login",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ],
+              "id": "89abaefa-c787-4ae9-9e41-466fa9f69ab8"
+            },
+            {
+              "name": "byid",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "/api/Identity/byid/:id",
+                      "id": "be5601ef-61d8-4708-9dca-99aad46b74c9",
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Identity/byid/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Identity",
+                            "byid",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id",
+                              "value": "1498"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "5fd86ef7-b173-472c-81b8-ab066b102c89",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Tenant",
+                                "value": "string"
+                              },
+                              {
+                                "key": "Authorization",
+                                "value": "Bearer <token>",
+                                "description": "Added as a part of security scheme: bearer"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/Identity/byid/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "Identity",
+                                "byid",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id",
+                                  "value": "1498"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "body": ""
+                        }
+                      ]
+                    }
+                  ],
+                  "id": "b6569c0a-da34-4e3c-94f3-119e37ee2a6d"
+                }
+              ],
+              "id": "2bcfd28f-559b-4625-ad17-607d90d249f9"
+            },
+            {
+              "name": "batch",
+              "item": [
+                {
+                  "name": "/api/Identity/batch",
+                  "id": "db1f9993-0348-46ad-aa43-aaeb27f0b925",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"login\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"statusId\": 7128,\n    \"jobTitle\": \"string\",\n    \"validFrom\": \"1971-07-19T23:32:54.553Z\",\n    \"validTo\": \"2003-10-07T12:58:41.763Z\",\n    \"departmentId\": 2018,\n    \"companyId\": 9178,\n    \"managerId\": 8184,\n    \"country\": \"string\",\n    \"countryId\": 3580,\n    \"countryBusinessKey\": \"string\",\n    \"categoryId\": 1894,\n    \"employeeID\": \"string\",\n    \"uid\": \"string\",\n    \"identityID\": \"string\",\n    \"departmentBusinessKey\": \"string\",\n    \"companyBusinessKey\": \"string\",\n    \"managerIdentityId\": \"string\",\n    \"orgUnitId\": 798,\n    \"orgUnitBusinessKey\": \"string\",\n    \"locationId\": 4156,\n    \"locationBusinessKey\": \"string\",\n    \"jobTitleId\": 9850,\n    \"jobTitleBusinessKey\": \"string\"\n  },\n  {\n    \"login\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"statusId\": 8345,\n    \"jobTitle\": \"string\",\n    \"validFrom\": \"1955-05-12T11:45:41.586Z\",\n    \"validTo\": \"1984-12-20T19:10:53.136Z\",\n    \"departmentId\": 6743,\n    \"companyId\": 1924,\n    \"managerId\": 221,\n    \"country\": \"string\",\n    \"countryId\": 264,\n    \"countryBusinessKey\": \"string\",\n    \"categoryId\": 9029,\n    \"employeeID\": \"string\",\n    \"uid\": \"string\",\n    \"identityID\": \"string\",\n    \"departmentBusinessKey\": \"string\",\n    \"companyBusinessKey\": \"string\",\n    \"managerIdentityId\": \"string\",\n    \"orgUnitId\": 434,\n    \"orgUnitBusinessKey\": \"string\",\n    \"locationId\": 9570,\n    \"locationBusinessKey\": \"string\",\n    \"jobTitleId\": 6155,\n    \"jobTitleBusinessKey\": \"string\"\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Identity/batch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Identity",
+                        "batch"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "2938ccef-a0f5-4d34-9ab7-e8169389815f",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"login\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"statusId\": 7128,\n    \"jobTitle\": \"string\",\n    \"validFrom\": \"1971-07-19T23:32:54.553Z\",\n    \"validTo\": \"2003-10-07T12:58:41.763Z\",\n    \"departmentId\": 2018,\n    \"companyId\": 9178,\n    \"managerId\": 8184,\n    \"country\": \"string\",\n    \"countryId\": 3580,\n    \"countryBusinessKey\": \"string\",\n    \"categoryId\": 1894,\n    \"employeeID\": \"string\",\n    \"uid\": \"string\",\n    \"identityID\": \"string\",\n    \"departmentBusinessKey\": \"string\",\n    \"companyBusinessKey\": \"string\",\n    \"managerIdentityId\": \"string\",\n    \"orgUnitId\": 798,\n    \"orgUnitBusinessKey\": \"string\",\n    \"locationId\": 4156,\n    \"locationBusinessKey\": \"string\",\n    \"jobTitleId\": 9850,\n    \"jobTitleBusinessKey\": \"string\"\n  },\n  {\n    \"login\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"statusId\": 8345,\n    \"jobTitle\": \"string\",\n    \"validFrom\": \"1955-05-12T11:45:41.586Z\",\n    \"validTo\": \"1984-12-20T19:10:53.136Z\",\n    \"departmentId\": 6743,\n    \"companyId\": 1924,\n    \"managerId\": 221,\n    \"country\": \"string\",\n    \"countryId\": 264,\n    \"countryBusinessKey\": \"string\",\n    \"categoryId\": 9029,\n    \"employeeID\": \"string\",\n    \"uid\": \"string\",\n    \"identityID\": \"string\",\n    \"departmentBusinessKey\": \"string\",\n    \"companyBusinessKey\": \"string\",\n    \"managerIdentityId\": \"string\",\n    \"orgUnitId\": 434,\n    \"orgUnitBusinessKey\": \"string\",\n    \"locationId\": 9570,\n    \"locationBusinessKey\": \"string\",\n    \"jobTitleId\": 6155,\n    \"jobTitleBusinessKey\": \"string\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Identity/batch",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Identity",
+                            "batch"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ],
+              "id": "b187787d-c310-4023-a8ea-cfd637a99fbc"
+            },
+            {
+              "name": "bulk",
+              "item": [
+                {
+                  "name": "/api/Identity/bulk",
+                  "id": "58d439ae-b366-424b-a762-78b77a90eac3",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"login\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"statusId\": 7128,\n    \"jobTitle\": \"string\",\n    \"validFrom\": \"1971-07-19T23:32:54.553Z\",\n    \"validTo\": \"2003-10-07T12:58:41.763Z\",\n    \"departmentId\": 2018,\n    \"companyId\": 9178,\n    \"managerId\": 8184,\n    \"country\": \"string\",\n    \"countryId\": 3580,\n    \"countryBusinessKey\": \"string\",\n    \"categoryId\": 1894,\n    \"employeeID\": \"string\",\n    \"uid\": \"string\",\n    \"identityID\": \"string\",\n    \"departmentBusinessKey\": \"string\",\n    \"companyBusinessKey\": \"string\",\n    \"managerIdentityId\": \"string\",\n    \"orgUnitId\": 798,\n    \"orgUnitBusinessKey\": \"string\",\n    \"locationId\": 4156,\n    \"locationBusinessKey\": \"string\",\n    \"jobTitleId\": 9850,\n    \"jobTitleBusinessKey\": \"string\"\n  },\n  {\n    \"login\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"statusId\": 8345,\n    \"jobTitle\": \"string\",\n    \"validFrom\": \"1955-05-12T11:45:41.586Z\",\n    \"validTo\": \"1984-12-20T19:10:53.136Z\",\n    \"departmentId\": 6743,\n    \"companyId\": 1924,\n    \"managerId\": 221,\n    \"country\": \"string\",\n    \"countryId\": 264,\n    \"countryBusinessKey\": \"string\",\n    \"categoryId\": 9029,\n    \"employeeID\": \"string\",\n    \"uid\": \"string\",\n    \"identityID\": \"string\",\n    \"departmentBusinessKey\": \"string\",\n    \"companyBusinessKey\": \"string\",\n    \"managerIdentityId\": \"string\",\n    \"orgUnitId\": 434,\n    \"orgUnitBusinessKey\": \"string\",\n    \"locationId\": 9570,\n    \"locationBusinessKey\": \"string\",\n    \"jobTitleId\": 6155,\n    \"jobTitleBusinessKey\": \"string\"\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Identity/bulk",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Identity",
+                        "bulk"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b5aee126-1b6e-4ae3-a5e5-08e44a80e400",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"login\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"statusId\": 7128,\n    \"jobTitle\": \"string\",\n    \"validFrom\": \"1971-07-19T23:32:54.553Z\",\n    \"validTo\": \"2003-10-07T12:58:41.763Z\",\n    \"departmentId\": 2018,\n    \"companyId\": 9178,\n    \"managerId\": 8184,\n    \"country\": \"string\",\n    \"countryId\": 3580,\n    \"countryBusinessKey\": \"string\",\n    \"categoryId\": 1894,\n    \"employeeID\": \"string\",\n    \"uid\": \"string\",\n    \"identityID\": \"string\",\n    \"departmentBusinessKey\": \"string\",\n    \"companyBusinessKey\": \"string\",\n    \"managerIdentityId\": \"string\",\n    \"orgUnitId\": 798,\n    \"orgUnitBusinessKey\": \"string\",\n    \"locationId\": 4156,\n    \"locationBusinessKey\": \"string\",\n    \"jobTitleId\": 9850,\n    \"jobTitleBusinessKey\": \"string\"\n  },\n  {\n    \"login\": \"string\",\n    \"firstName\": \"string\",\n    \"lastName\": \"string\",\n    \"statusId\": 8345,\n    \"jobTitle\": \"string\",\n    \"validFrom\": \"1955-05-12T11:45:41.586Z\",\n    \"validTo\": \"1984-12-20T19:10:53.136Z\",\n    \"departmentId\": 6743,\n    \"companyId\": 1924,\n    \"managerId\": 221,\n    \"country\": \"string\",\n    \"countryId\": 264,\n    \"countryBusinessKey\": \"string\",\n    \"categoryId\": 9029,\n    \"employeeID\": \"string\",\n    \"uid\": \"string\",\n    \"identityID\": \"string\",\n    \"departmentBusinessKey\": \"string\",\n    \"companyBusinessKey\": \"string\",\n    \"managerIdentityId\": \"string\",\n    \"orgUnitId\": 434,\n    \"orgUnitBusinessKey\": \"string\",\n    \"locationId\": 9570,\n    \"locationBusinessKey\": \"string\",\n    \"jobTitleId\": 6155,\n    \"jobTitleBusinessKey\": \"string\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Identity/bulk",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Identity",
+                            "bulk"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/Identity/bulk",
+                  "id": "bf890f5e-db65-4d59-b8dd-764757db7c22",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  \"string\",\n  \"string\"\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Identity/bulk",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Identity",
+                        "bulk"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "de7c950e-2fb8-4b2f-9ffe-970f09c02e37",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  \"string\",\n  \"string\"\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Identity/bulk",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Identity",
+                            "bulk"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ],
+              "id": "4c6d22d8-87f9-4b20-90ce-25cd7f055612"
+            },
+            {
+              "name": "/api/Identity",
+              "id": "63ad140a-8d7d-4f63-aa5c-3857c8adfe2a",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Identity?page=1&pageSize=20&search=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Identity"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "2f5adf1c-e2c4-4760-a7d3-a2a9f6652961",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Identity?page=1&pageSize=20&search=string",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Identity"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "key": "search",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "/api/Identity",
+              "id": "6d601b21-ac65-44c0-ada8-398d98224a73",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"statusId\": 4271,\n  \"jobTitle\": \"string\",\n  \"validFrom\": \"1956-06-10T21:45:47.756Z\",\n  \"validTo\": \"2005-02-25T17:35:57.656Z\",\n  \"departmentId\": 6945,\n  \"companyId\": 9161,\n  \"managerId\": 6273,\n  \"country\": \"string\",\n  \"countryId\": 7512,\n  \"countryBusinessKey\": \"string\",\n  \"categoryId\": 540,\n  \"employeeID\": \"string\",\n  \"uid\": \"string\",\n  \"identityID\": \"string\",\n  \"departmentBusinessKey\": \"string\",\n  \"companyBusinessKey\": \"string\",\n  \"managerIdentityId\": \"string\",\n  \"orgUnitId\": 9138,\n  \"orgUnitBusinessKey\": \"string\",\n  \"locationId\": 1003,\n  \"locationBusinessKey\": \"string\",\n  \"jobTitleId\": 4536,\n  \"jobTitleBusinessKey\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Identity",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Identity"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ebc3d3ab-480a-4787-b44e-642716d9c0dd",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"login\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"statusId\": 4271,\n  \"jobTitle\": \"string\",\n  \"validFrom\": \"1956-06-10T21:45:47.756Z\",\n  \"validTo\": \"2005-02-25T17:35:57.656Z\",\n  \"departmentId\": 6945,\n  \"companyId\": 9161,\n  \"managerId\": 6273,\n  \"country\": \"string\",\n  \"countryId\": 7512,\n  \"countryBusinessKey\": \"string\",\n  \"categoryId\": 540,\n  \"employeeID\": \"string\",\n  \"uid\": \"string\",\n  \"identityID\": \"string\",\n  \"departmentBusinessKey\": \"string\",\n  \"companyBusinessKey\": \"string\",\n  \"managerIdentityId\": \"string\",\n  \"orgUnitId\": 9138,\n  \"orgUnitBusinessKey\": \"string\",\n  \"locationId\": 1003,\n  \"locationBusinessKey\": \"string\",\n  \"jobTitleId\": 4536,\n  \"jobTitleBusinessKey\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Identity",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Identity"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "35f18a5e-9aa0-4f67-93f1-f474b5cbb0ba"
+        },
+        {
+          "name": "IdentityCategory",
+          "item": [
+            {
+              "name": "/api/IdentityCategory",
+              "id": "05da6da0-efde-4f32-b4de-a33abb69f4d8",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/IdentityCategory",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "IdentityCategory"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "55dc9797-6210-4c9e-b812-bd60ca5067e0",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/IdentityCategory",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "IdentityCategory"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "89c88475-7288-469e-a517-b08e5805aa99"
+        },
+        {
+          "name": "Login",
+          "item": [
+            {
+              "name": "/api/Login",
+              "id": "3e3adb38-0a58-4aab-9673-d372b4e7bb7b",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Login?client_id=string&client_secret=string&name=string&password=string&tenant=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Login"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "string"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "string"
+                    },
+                    {
+                      "key": "name",
+                      "value": "string"
+                    },
+                    {
+                      "key": "password",
+                      "value": "string"
+                    },
+                    {
+                      "key": "tenant",
+                      "value": "string"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "7e5fbc37-0590-4a07-8fed-7ec8d177ad8c",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Login?client_id=string&client_secret=string&name=string&password=string&tenant=string",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Login"
+                      ],
+                      "query": [
+                        {
+                          "key": "client_id",
+                          "value": "string"
+                        },
+                        {
+                          "key": "client_secret",
+                          "value": "string"
+                        },
+                        {
+                          "key": "name",
+                          "value": "string"
+                        },
+                        {
+                          "key": "password",
+                          "value": "string"
+                        },
+                        {
+                          "key": "tenant",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "4ea545fd-1556-4ba7-8d9e-6d7108618b4b"
+        },
+        {
+          "name": "Status",
+          "item": [
+            {
+              "name": "/api/Status",
+              "id": "70a08722-5e83-4f67-aad2-26258b513738",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Status"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "bd73bef3-c225-43a7-835e-98bc1a5bcc91",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Status"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "2d72d558-dbad-4fc9-99da-6d9214fcad17"
+        },
+        {
+          "name": "Tenant",
+          "item": [
+            {
+              "name": "{tenantName}",
+              "item": [
+                {
+                  "name": "/api/Tenant/:tenantName",
+                  "id": "db6090ba-76b8-4d80-81ab-ed6a6a8b0883",
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Tenant/:tenantName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Tenant",
+                        ":tenantName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenantName",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "fe85195a-0a83-43d9-9322-2594f27be179",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Tenant/:tenantName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Tenant",
+                            ":tenantName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenantName",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/Tenant/:tenantName",
+                  "id": "8aefbc0b-8731-406e-8911-0be6c25bd362",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"technicalName\": \"string\",\n  \"friendlyName\": \"string\",\n  \"password\": \"string\",\n  \"baseTenantId\": 9936\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Tenant/:tenantName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Tenant",
+                        ":tenantName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenantName",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "c4ebce51-82fa-4d1c-861c-2fb3509cfe74",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"technicalName\": \"string\",\n  \"friendlyName\": \"string\",\n  \"password\": \"string\",\n  \"baseTenantId\": 9936\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Tenant/:tenantName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Tenant",
+                            ":tenantName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenantName",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                },
+                {
+                  "name": "/api/Tenant/:tenantName",
+                  "id": "78ff93bf-b41d-4c3f-8194-28bafd0a7f9e",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Tenant/:tenantName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Tenant",
+                        ":tenantName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenantName",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "a63a3e73-725a-430e-b929-06398cdfa670",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/Tenant/:tenantName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "Tenant",
+                            ":tenantName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "tenantName",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ],
+              "id": "bd81f413-61bb-44d9-8ec3-5af7c2eab8ae"
+            },
+            {
+              "name": "/api/Tenant",
+              "id": "60e73900-3916-4399-a076-bead64f237a2",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/Tenant?page=1&pageSize=20&search=string",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Tenant"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "string"
+                    },
+                    {
+                      "key": "",
+                      "value": "",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1a98241c-7216-4727-9461-e1cdcb27e2d9",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Tenant?page=1&pageSize=20&search=string",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Tenant"
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "key": "pageSize",
+                          "value": "20"
+                        },
+                        {
+                          "key": "search",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            },
+            {
+              "name": "/api/Tenant",
+              "id": "7bc3ccac-6a3d-4888-8f39-6304a7ed89c2",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"technicalName\": \"string\",\n  \"friendlyName\": \"string\",\n  \"password\": \"string\",\n  \"baseTenantId\": 9936\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/Tenant",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "Tenant"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "144b2c50-ea67-4693-8ba3-2e71a412299d",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"technicalName\": \"string\",\n  \"friendlyName\": \"string\",\n  \"password\": \"string\",\n  \"baseTenantId\": 9936\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/Tenant",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "Tenant"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "a6d3033d-7dbc-4c6f-af3e-0d39535b9929"
+        },
+        {
+          "name": "User",
+          "item": [
+            {
+              "name": "{login}",
+              "item": [
+                {
+                  "name": "/api/User/:login",
+                  "id": "d0ec2f5a-e84c-4c4c-92dc-bf4a6ac2e717",
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "{{tenant_name}}"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"login\": \"string\",\n  \"password\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/User/:login",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "User",
+                        ":login"
+                      ],
+                      "variable": [
+                        {
+                          "key": "login",
+                          "value": "string"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "db083870-ea70-4be6-bf52-bcff616551db",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Tenant",
+                            "value": "string"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Authorization",
+                            "value": "Bearer <token>",
+                            "description": "Added as a part of security scheme: bearer"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"login\": \"string\",\n  \"password\": \"string\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/User/:login",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "User",
+                            ":login"
+                          ],
+                          "variable": [
+                            {
+                              "key": "login",
+                              "value": "string"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "body": ""
+                    }
+                  ]
+                }
+              ],
+              "id": "e16379f4-704b-4b1d-94cb-b167a54533fc"
+            },
+            {
+              "name": "/api/User",
+              "id": "4e7eb564-dd42-4d15-ac8e-55c2ca225a33",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Tenant",
+                    "value": "{{tenant_name}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"string\",\n  \"password\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/User",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "User"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "3b067cfb-8e5f-4dfa-bda0-5f5905fc4527",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Tenant",
+                        "value": "string"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Authorization",
+                        "value": "Bearer <token>",
+                        "description": "Added as a part of security scheme: bearer"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"login\": \"string\",\n  \"password\": \"string\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/User",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "User"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "body": ""
+                }
+              ]
+            }
+          ],
+          "id": "d04c2365-d6a8-47d6-a224-286451f6a301"
+        }
+      ],
+      "id": "b42d27cc-5977-4245-b872-fc0270867d6d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{access_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "09b06d1a-e15d-46f8-a99a-a558f0d5a120",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "91888769-617a-4d46-a9bc-46cb34aead6a",
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "629b3088-1db3-436d-8d66-1f70c41befbf",
+      "key": "baseUrl",
+      "value": "/"
+    },
+    {
+      "id": "5ac5027a-a475-4e58-b4b9-14d90ad0e401",
+      "key": "tenant_name",
+      "value": ""
+    },
+    {
+      "id": "003d8e43-f17f-4548-9fb3-233f71d408b2",
+      "key": "client_secret",
+      "value": ""
+    },
+    {
+      "id": "4076b3bb-ed10-4c73-8b21-9aa5067e3f7b",
+      "key": "access_token",
+      "value": ""
+    }
+  ]
+}

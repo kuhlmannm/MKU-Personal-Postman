@@ -1,0 +1,95 @@
+{
+  "info": {
+    "_postman_id": "9786cbb8-0e10-45c8-80aa-886ca418435d",
+    "name": "Jira Demo",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Retrieve Field Metadata",
+      "id": "59f6c10f-ece9-439d-8c2e-78131696c7af",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://mkudemo.atlassian.net/rest/api/3/field",
+          "protocol": "https",
+          "host": [
+            "mkudemo",
+            "atlassian",
+            "net"
+          ],
+          "path": [
+            "rest",
+            "api",
+            "3",
+            "field"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve Issue",
+      "id": "5b1b1147-5065-406e-adef-0fb5e349c943",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://mkudemo.atlassian.net/rest/api/3/issue/mku002-3",
+          "protocol": "https",
+          "host": [
+            "mkudemo",
+            "atlassian",
+            "net"
+          ],
+          "path": [
+            "rest",
+            "api",
+            "3",
+            "issue",
+            "mku002-3"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "password",
+        "value": "ATATT3xFfGF0Flrb31P258TJrU0DCTK2IvSqttsn-HvA0t3UqdDgfuCisRkZ6KwXOhz2tyXKhBhsAMZxeurStQGj8uea5gZbC0G3VqS7xxoIJAjoyqQehcFtBhhB-gzGa5-A7VCz1Oe-hk5UNBdZavvK0JFvR4hy_7PKwFgoIS-Jh56DnnMBXg4=0C986788",
+        "type": "string"
+      },
+      {
+        "key": "username",
+        "value": "mku@omada.net",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "895d12c1-f3f4-48fc-a821-ed317b9143e5",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "210e94f4-1c3a-4bab-9d93-fc0a1383840b",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

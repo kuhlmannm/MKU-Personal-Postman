@@ -1,0 +1,597 @@
+{
+  "info": {
+    "_postman_id": "8f2e3bac-4e98-4090-9157-b9962893f2d1",
+    "name": "OIS REST API - omada.cloud",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Query identity",
+      "id": "62d0342d-8297-4890-a351-4a4877c07e11",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "client_id",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "client_secret",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "grant_type",
+            "value": "client_credentials",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "url": {
+          "raw": "https://{{OmadaInstanceURL}}/OData/DataObjects/Identity?$filter=LASTNAME eq 'Taylor'",
+          "protocol": "https",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Identity"
+          ],
+          "query": [
+            {
+              "key": "$filter",
+              "value": "LASTNAME eq 'Taylor'"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Contractor Identity",
+      "id": "b04f2915-c853-4359-ae51-4b964ca08c40",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "oisauthtoken",
+            "value": "Ejanfaco8zMvx9TjPboIOA==",
+            "type": "text"
+          },
+          {
+            "key": "SAMLNameID",
+            "value": "martin.kuhlmann@omadaidentity.com",
+            "type": "text"
+          },
+          {
+            "key": "OISaaS_WS_gw3793",
+            "value": "ldtgqj4ovhamt510cvakytwu",
+            "type": "text"
+          },
+          {
+            "key": "oissamlrequestid",
+            "value": "zFzLy/3oG7no4coSG/K1K91Q+ygtqsoUiBMbzQD9QBF182p3w3NzlkaDfH4jdhPSt/n7ochIgdaqkoM7RNl6RQ==",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"IDENTITYID\": \"XXLB0015\",\n    \"FIRSTNAME\": \"Louise\",\n    \"LASTNAME\": \"Carreras\",\n    \"JOBTITLE\": \"Assistant\",\n    \"VALIDFROM\": \"2024-11-01T01:00:00+01:00\",\n    \"VALIDTO\": \"9999-12-31T01:00:00+01:00\",\n    \n    \"OUREF\": {\n        \"Id\": 1003855\n    },\n    \"IDENTITYSTATUS\": {\n        \"UId\": \"a4ed4124-9b94-43a0-92c0-e71fba733049\"\n    },\n    \"IDENTITYCATEGORY\": {\n        \"Id\": 561\n    },\n    \"IDENTITYTYPE\": {\n        \"UId\": \"d13624f9-905d-4bc5-a6cc-2a4589c26be4\"\n    },\n    \"C_SW_STORE_REF\": {\n        \"UId\": \"46919fac-d5a0-430d-98c1-abb4f0f117eb\"\n    }\n}"
+        },
+        "url": {
+          "raw": "https://{{OmadaInstanceURL}}/OData/DataObjects/Identity",
+          "protocol": "https",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Identity"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Identity Object and property bindings",
+      "id": "411ba8cf-782d-49fd-bb7d-1b5ce4dddc85",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{OmadaInstanceURL}}/OData/Builtin/DataObjectTypes(949)?$expand=PropertyBindings",
+          "protocol": "http",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "Builtin",
+            "DataObjectTypes(949)"
+          ],
+          "query": [
+            {
+              "key": "$expand",
+              "value": "PropertyBindings"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Metadata",
+      "id": "338dd98c-5ae4-43be-ac5f-9acddd36b04b",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{OmadaInstanceURL}}/OData/Builtin/$metadata",
+          "protocol": "http",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "Builtin",
+            "$metadata"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Calc Assignments of an identity",
+      "id": "72223592-3775-4bcb-b56c-f6136cc95612",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{OmadaInstanceURL}}/OData/BuiltIn/CalculatedAssignments?$filter=Identity/Id eq 1006795",
+          "protocol": "http",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "BuiltIn",
+            "CalculatedAssignments"
+          ],
+          "query": [
+            {
+              "key": "$filter",
+              "value": "Identity/Id eq 1006795"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create RAs",
+      "id": "3d3a6f2a-809e-485a-afec-cd3d83253a2c",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\"IDENTITYREF\": {\"Id\": \"1006750\"}, \n\"ROLEREF\": {\"Id\": 1025532}, \n\"ROLEASSNSTATUS\": {\"UId\": \"6ace2d1a-12e2-4568-9354-d686a6715767\"},\n\"VALIDFROM\": \"2025-02-01T01:00:00+01:00\", \n\"VALIDTO\": \"2026-12-31T01:00:00+01:00\"\n}"
+        },
+        "url": {
+          "raw": "https://{{OmadaInstanceURL}}/OData/DataObjects/Resourceassignment",
+          "protocol": "https",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Resourceassignment"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve Roles",
+      "id": "16043f1a-acf9-442b-b92e-a2d4997a8b74",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://{{OmadaInstanceURL}}/OData/DataObjects/Resource?$filter=NAME eq 'Create Report'",
+          "protocol": "https",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Resource"
+          ],
+          "query": [
+            {
+              "key": "$filter",
+              "value": "NAME eq 'Create Report'"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create new role",
+      "id": "52e032c9-f386-490b-a4b5-7819d2379bf6",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"ROLEID\": \"Odata Testrole\",\n    \"NAME\": \"ODATA Test\",\n    \"SYSTEMREF\": {\n        \"UId\": \"947d7e00-a30e-4447-a381-a31a4b7d06f6\"\n    },\n    \"ROLECATEGORY\": {\n        \"Id\": 500\n    },\n    \"CHILDROLES\": [\n        {\n            \"UId\": \"ff391099-d490-4c63-88ea-138faddef691\"\n        },\n        {\n            \"UId\": \"3b160694-b871-4d4b-88ab-733414a0c184\"\n        }\n    ],\n    \"RESOURCESTATUS\": {\n        \"Id\": 1011\n    },\n    \"ROLETYPEREF\": {\n        \"UId\": \"372abb7d-094d-4c2b-955b-b3d2ef2330b9\"\n    },\n    \"ROLEFOLDER\": {\n        \"UId\": \"a029a462-e602-4f61-a673-bcc0d650c00f\"\n    }\n}"
+        },
+        "url": {
+          "raw": "https://{{OmadaInstanceURL}}/OData/DataObjects/Resource",
+          "protocol": "https",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Resource"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get subareas",
+      "id": "e6756a3d-effb-4572-a0e3-80a227a5d0ec",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "https://{{OmadaInstanceURL}}/OData/DataObjects/Subarea",
+          "protocol": "https",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Subarea"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Identity",
+      "id": "6a68a2a1-5eca-4653-8b81-3be12e147a75",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \r\n    \"OUREF\": \r\n        {\r\n                \r\n                \"KeyValue\": \"GBG_AAL.B.BU\",\r\n                \"KeyProperty\": \"OUID\"\r\n        }    \r\n    \r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{OmadaInstanceURL}}/OData/DataObjects/Identity(1006795)",
+          "protocol": "https",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Identity(1006795)"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve RA Objects",
+      "id": "6f7e3cb6-a397-4bbd-92e8-03eb3bff17c4",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://{{OmadaInstanceURL}}/OData/DataObjects/Resourceassignment",
+          "protocol": "https",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Resourceassignment"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create SoD Constraint",
+      "id": "c0cb0a66-542f-412e-81db-2e99a122d3ed",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n          \r\n            \"NAME\": \"Trading System single assignment policy2\",\r\n            \"NAMEML\": \"Trading System single assignment policy2\",\r\n            \"CONSTRAINTINACTIVE\": false,\r\n            \"SODIDENTITYSCOPE\": \"\",\r\n            \"SODNEGATESCOPE\": false,\r\n            \"SODPROCESSCONSTRAINT\": false,\r\n            \"SODATTRIBUTESCOPEALL\": false, \r\n            \"DESCRIPTIONML\": \"Users are NOT allowed to have more than one assignment in the Trading System\",\r\n            \"ROLECOMBINATION\": \r\n            [\r\n                {\"Id\": 1011114},\r\n                {\"Id\": 1011116}\r\n            ],\r\n            \"CONSTRAINTOWNER\": [\r\n                {\r\n                \"Id\": 1003169    \r\n                }\r\n            ],\r\n          \r\n            \"CONSTRAINTRISKLEVEL\": \r\n                {\r\n                \"Id\": 1001999 \r\n                },\r\n            \"CONSTRAINT_COMPCTRL\": \r\n            [\r\n                {\r\n                \"Id\": 1003706   \r\n                }\r\n            ]\r\n        }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://{{OmadaInstanceURL}}/OData/DataObjects/Constraint",
+          "protocol": "https",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Constraint"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Query Metadata",
+      "id": "587fe063-5266-4e43-bb11-aad357a57667",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "client_id",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "client_secret",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          },
+          {
+            "key": "grant_type",
+            "value": "client_credentials",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "url": {
+          "raw": "https://{{OmadaInstanceURL}}/OData/BuiltIn/Properties(999)?$expand=Values",
+          "protocol": "https",
+          "host": [
+            "{{OmadaInstanceURL}}"
+          ],
+          "path": [
+            "OData",
+            "BuiltIn",
+            "Properties(999)"
+          ],
+          "query": [
+            {
+              "key": "$expand",
+              "value": "Values"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "clientId",
+        "value": "{{AuthAppClientID}}",
+        "type": "string"
+      },
+      {
+        "key": "clientSecret",
+        "value": "{{AuthAppClientSecret}}",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "{{AuthAppAccessTokenURL}}",
+        "type": "string"
+      },
+      {
+        "key": "scope",
+        "value": "{{OpenIDAppScope}}",
+        "type": "string"
+      },
+      {
+        "key": "tokenRequestParams",
+        "value": [
+          {
+            "key": "client_id",
+            "value": "{{AuthAppClientID}}",
+            "enabled": false,
+            "send_as": "request_body"
+          },
+          {
+            "key": "client_secret",
+            "value": "{{AuthAppClientSecret}}",
+            "enabled": true,
+            "send_as": "request_body"
+          },
+          {
+            "key": "grant_type",
+            "value": "client_credentials",
+            "enabled": false,
+            "send_as": "request_body"
+          },
+          {
+            "key": "scope",
+            "value": "{{OpenIDAppScope}}",
+            "enabled": false,
+            "send_as": "request_body"
+          }
+        ],
+        "type": "any"
+      },
+      {
+        "key": "client_authentication",
+        "value": "body",
+        "type": "string"
+      },
+      {
+        "key": "addTokenTo",
+        "value": "header",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials",
+        "type": "string"
+      },
+      {
+        "key": "refreshRequestParams",
+        "value": [],
+        "type": "any"
+      },
+      {
+        "key": "authRequestParams",
+        "value": [],
+        "type": "any"
+      },
+      {
+        "key": "tokenName",
+        "value": "OmadaLogonToken",
+        "type": "string"
+      },
+      {
+        "key": "challengeAlgorithm",
+        "value": "S256",
+        "type": "string"
+      },
+      {
+        "key": "username",
+        "value": "DE10X20484",
+        "type": "string"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://www.getpostman.com/oauth2/callback",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "gI74JS0a@#JW",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://test.salesforce.com/services/oauth2/authorize",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "66b18983-93fb-4b2f-9cbf-f60676540c73",
+        "type": "text/javascript",
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "7ae3fb56-5f2c-4c6b-bdd5-d8567e6880cb",
+        "type": "text/javascript",
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "83b00ddd-6b00-4546-89ba-c175b3e991d2",
+      "key": "OmadaInstanceURL",
+      "value": "mku-pdi.omada.cloud"
+    },
+    {
+      "id": "329b570f-812a-42fa-8782-64443fc7a2fc",
+      "key": "AuthAppClientID",
+      "value": "84e9acf6-4bd2-4711-9f32-b39440228920"
+    },
+    {
+      "id": "85e1632d-a3c4-4c8e-a30c-f7c44d16bcc0",
+      "key": "AuthAppClientSecret",
+      "value": "snI8Q~qvaUv0ZHB8fSiMX8Kk2E-OJ1IOEQGrqaVv"
+    },
+    {
+      "id": "7a428a82-bb22-4a98-9c5f-d845fb118597",
+      "key": "OpenIDAppScope",
+      "value": "api://b11d68be-9846-4a64-96d7-06c31f2f6e9f/.default"
+    },
+    {
+      "id": "f8816d1d-6fd3-4943-95ba-c30efaa844b9",
+      "key": "AuthAppAccessTokenURL",
+      "value": "https://login.microsoftonline.com/959f9211-66fe-4074-bf89-27a4a971cb5c/oauth2/v2.0/token"
+    }
+  ]
+}

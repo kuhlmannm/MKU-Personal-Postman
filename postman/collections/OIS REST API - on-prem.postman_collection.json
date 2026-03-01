@@ -1,0 +1,640 @@
+{
+  "info": {
+    "_postman_id": "2bdddebe-7197-487f-bb13-4f2284241a5e",
+    "name": "OIS REST API - on-prem",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Query identity",
+      "id": "89666252-6565-4e9c-b89c-f2b939407038",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/Identity?$filter=FIRSTNAME eq 'Emma' and LASTNAME eq 'Taylor'",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Identity"
+          ],
+          "query": [
+            {
+              "key": "$filter",
+              "value": "FIRSTNAME eq 'Emma' and LASTNAME eq 'Taylor'"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Query HW Ticket",
+      "id": "2da39938-8445-4a21-8a71-bc394f7ddf44",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/Identity?$filter=FIRSTNAME eq 'Trudy' and LASTNAME eq 'Jones'",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Identity"
+          ],
+          "query": [
+            {
+              "key": "$filter",
+              "value": "FIRSTNAME eq 'Trudy' and LASTNAME eq 'Jones'"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add new Identity",
+      "id": "50fe0574-c3d3-4d62-aaa6-032cc3fa94a2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "name": "Content-Type",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "oisauthtoken",
+            "value": "Ejanfaco8zMvx9TjPboIOA==",
+            "type": "text"
+          },
+          {
+            "key": "SAMLNameID",
+            "value": "martin.kuhlmann@omadaidentity.com",
+            "type": "text"
+          },
+          {
+            "key": "OISaaS_WS_gw3793",
+            "value": "ldtgqj4ovhamt510cvakytwu",
+            "type": "text"
+          },
+          {
+            "key": "oissamlrequestid",
+            "value": "zFzLy/3oG7no4coSG/K1K91Q+ygtqsoUiBMbzQD9QBF182p3w3NzlkaDfH4jdhPSt/n7ochIgdaqkoM7RNl6RQ==",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"IDENTITYID\": \"XXLB0010\",\n    \"FIRSTNAME\": \"Lea\",\n    \"LASTNAME\": \"Black\",\n    \"JOBTITLE\": \"Assistant\",\n    \"VALIDFROM\": \"2016-01-01T01:00:00+01:00\",\n    \"VALIDTO\": \"9999-12-31T01:00:00+01:00\",\n    \"MANAGER\": [\n        {\n            \"UId\": \"1562c2dc-e62e-4a53-b37c-822b0ae0a9eb\"\n        }\n    ],\n    \"OUREF\": {\n        \"Id\": 1003855\n    },\n    \"IDENTITYSTATUS\": {\n        \"UId\": \"a4ed4124-9b94-43a0-92c0-e71fba733049\"\n    },\n    \"IDENTITYCATEGORY\": {\n        \"Id\": 561\n    },\n    \"IDENTITYTYPE\": {\n        \"UId\": \"d13624f9-905d-4bc5-a6cc-2a4589c26be4\"\n    }\n}"
+        },
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/Identity",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Identity"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add new Tech Location",
+      "id": "33a04be5-5438-4006-be96-89b7490d603b",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "name": "Content-Type",
+            "type": "text"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "oisauthtoken",
+            "value": "Ejanfaco8zMvx9TjPboIOA==",
+            "type": "text"
+          },
+          {
+            "key": "SAMLNameID",
+            "value": "martin.kuhlmann@omadaidentity.com",
+            "type": "text"
+          },
+          {
+            "key": "OISaaS_WS_gw3793",
+            "value": "ldtgqj4ovhamt510cvakytwu",
+            "type": "text"
+          },
+          {
+            "key": "oissamlrequestid",
+            "value": "zFzLy/3oG7no4coSG/K1K91Q+ygtqsoUiBMbzQD9QBF182p3w3NzlkaDfH4jdhPSt/n7ochIgdaqkoM7RNl6RQ==",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n            \"NAME\": \"Sales Nordhorn\",\n            \"STREET\": \"Hauptstr. 23\",\n            \"CITY\": \"Nordhorn\",\n            \"POSTCODE\": \"25441\",\n            \"DESCRIPTION\": \"Vertriebsniederlassung\"\n}"
+        },
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/TECH_LOC",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "TECH_LOC"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://enterpriseserver/OData/DataObjects/Identity(1011215)",
+      "id": "a5a17046-94a5-45bf-9897-774828fad76e",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "name": "Content-Type",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"MANAGER\":{ \"Id\": 1001558 }}"
+        },
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/Identity(1011215)",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Identity(1011215)"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New contractor onboarding object",
+      "id": "f2f60a4f-78e8-4b10-8fee-d21dfc70c3ff",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "name": "Content-Type",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\"FIRSTNAME\": \"xxxxxx\", \n\"LASTNAME\": \"yyyyyy\", \n\"JOBTITLE\": \"Assistant\", \n\"VALIDFROM\": \"2019-09-13T01:00:00+01:00\", \n\"VALIDTO\": \"2019-09-30T01:00:00+01:00\", \n\"CONTRACTORDEPT\": { \"Id\": 1000787 }, \n\"MANAGER\": [{ \"UId\": \"30527853-d21f-4f3e-92f7-eeb855f16f81\" }],\n\"MANAGER2\": { \"UId\": \"30527853-d21f-4f3e-92f7-eeb855f16f81\" },\n\"NDA_REQUIRED\": \"True\",\n\"ODATA_SOURCE\": \"True\"\n}\n\n\n              "
+        },
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/Contr_odata_import",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Contr_odata_import"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New HW Ticket",
+      "id": "8940c2b7-d3f0-49a4-aa1b-c635fa9bc06c",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "name": "Content-Type",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\"C_TICKET_NO\": \"0005\", \n\"C_ITEM_NAME\": \"Monitor HP\", \n\"C_SERIAL_NO\": \"ABCFU12345\", \n\"C_HW_TICKET_STATUS\": { \"Id\": 1000263   }, \n\"C_TICKET_IDENT\": { \"KeyValue\": \"EMMTAY\" }\n}\n\n\n              "
+        },
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/C_HW_TICKET",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "C_HW_TICKET"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "http://enterpriseserver/OData/Builtin/DataObjectTypes(949)?$expand=PropertyBindings($w=Property)",
+      "id": "635da234-e97a-4628-bf54-7f77c490da2b",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://enterpriseserver/OData/Builtin/DataObjectTypes(949)?$expand=PropertyBindings($w=Property)",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "Builtin",
+            "DataObjectTypes(949)"
+          ],
+          "query": [
+            {
+              "key": "$expand",
+              "value": "PropertyBindings($w=Property)"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Metadata",
+      "id": "f3f4614f-6a19-4e22-9c6a-3ea0b9c9c42f",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://enterpriseserver/OData/Builtin/$metadata",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "Builtin",
+            "$metadata"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Calc Assignments of an identity",
+      "id": "3038a0ab-5e5a-499e-b473-f4a74a1ee8d2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://enterpriseserver/OData/BuiltIn/CalculatedAssignments?$filter=Identity/Id eq 1001522&$select=AssignmentKey,AccountName&$expand=Identity,Resource,ResourceType",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "BuiltIn",
+            "CalculatedAssignments"
+          ],
+          "query": [
+            {
+              "key": "$filter",
+              "value": "Identity/Id eq 1001522"
+            },
+            {
+              "key": "$select",
+              "value": "AssignmentKey,AccountName"
+            },
+            {
+              "key": "$expand",
+              "value": "Identity,Resource,ResourceType"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create RA",
+      "id": "6a43feef-4f15-4629-908e-9e85905e9bb0",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "name": "Content-Type",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[{\n\"IDENTITYREF\": {\"Id\": 1003032}, \n\"ROLEREF\": {\"Id\": 1001990}, \n\"ROLEASSNSTATUS\": {\"UId\": \"6ace2d1a-12e2-4568-9354-d686a6715767\"},\n\"VALIDFROM\": \"2020-02-01T01:00:00+01:00\", \n\"VALIDTO\": \"2020-12-31T01:00:00+01:00\"\n}\n\n{\n\"IDENTITYREF\": {\"Id\": 1002852}, \n\"ROLEREF\": {\"Id\": 1001990}, \n\"ROLEASSNSTATUS\": {\"UId\": \"6ace2d1a-12e2-4568-9354-d686a6715767\"},\n\"VALIDFROM\": \"2020-02-01T01:00:00+01:00\", \n\"VALIDTO\": \"2020-12-31T01:00:00+01:00\"\n}]"
+        },
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/Resourceassignment",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Resourceassignment"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve Roles",
+      "id": "6651f278-a08f-4621-8a5e-1eabbe845829",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/Resource?$filter=Systemref/Id eq 1011070",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Resource"
+          ],
+          "query": [
+            {
+              "key": "$filter",
+              "value": "Systemref/Id eq 1011070"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create new role",
+      "id": "1f524526-7867-4488-add9-31107c6a0105",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "name": "Content-Type",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\"ROLEID\": \"Odata Testrole\", \n\"NAME\": \"ODATA Test\",\n\"SYSTEMREF\": { \"UId\": \"f23e3e04-a8e0-47e0-8716-6fe3ec8d1c1f\" }, \n\"ROLECATEGORY\": { \"Id\": 500 },\n\"CHILDROLES\": [{ \"UId\": \"a5ba0e0b-659b-44bb-aaa5-4de4b2335248\" },{ \"UId\": \"5a761697-0d26-49fb-bb4a-e784adac0755\" }], \n\"RESOURCESTATUS\": { \"Id\": 1011 },\n\"ROLETYPEREF\": { \"UId\": \"0b8f8867-6b65-4661-96c4-dda3539b4554\" }, \n\"ROLEFOLDER\": { \"UId\": \"9df88671-4e7e-4f7a-ba7d-0df66cddb122\" }\n}"
+        },
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/Resource",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Resource"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test",
+      "id": "831444b5-a62a-4991-b67f-6c5a0f769c8a",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "name": "Content-Type",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"ROLEID\":\"ODATA Test\", \"NAME\":\"ODATA Testrole\", \"SYSTEMREF\": {\"UId\": \"82be8877-f7d2-43e6-9c44-3429d206f4ac\"}, \"ROLECATEGORY\": {\"Id\": 500}, \"CHILDROLES\": [{\"UId\":\"18190baf-1262-4cff-9ba3-255b0f72f354\"}, {\"UId\":\"d7ffefc2-956e-4c00-9f25-f9c63fdb73cc\"}], \"RESOURCESTATUS\": {\"Id\": 1011}, \"ROLETYPEREF\": {\"UId\":\"d9de1a22-1fd4-497c-ac9e-5f64bdefce4d\"}, \"ROLEFOLDER\": {\"UId\":\"ddc81e19-94d9-4ebe-80fd-c9f2affbf707\"} }\r\n"
+        },
+        "url": {
+          "raw": "http://mku-demo-14-4.westeurope.cloudapp.azure.com/OData/DataObjects/Resource",
+          "protocol": "http",
+          "host": [
+            "mku-demo-14-4",
+            "westeurope",
+            "cloudapp",
+            "azure",
+            "com"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Resource"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Token",
+      "id": "cb3dd223-5a39-4321-a615-d88821adc94c",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Add HSA Commission assignment",
+      "id": "212eb26f-1854-48d5-a5a0-10e20e7934ef",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"CA_IDENTITY\": {\"KeyValue\": \"SE2321000206-bmn014\", KeyProperty: \"C_HSAIDENTITY\"},\r\n\"CA_CONTEXT\": {\"KeyValue\": \"SE2321000206-U10014\", KeyProperty: \"C_HSAIDENTITY\"},\r\n\"VALIDFROM\": \"2020-02-01T01:00:00+01:00\",\r\n\"VALIDTO\": \"2025-12-31T01:00:00+01:00\"\r\n}\r\n"
+        },
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/contextassignment",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "contextassignment"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add HSA Commission",
+      "id": "83d886b3-db74-49ab-9d32-f2167074df66",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"CA_IDENTITY\": { \"UId\": \"6a28e191-511d-4ae8-a3b6-b3ef80cfffa1\" },\r\n\"CA_CONTEXT\": { \"UId\": \"112aa5dd-aa4a-4cdb-b037-f66884ea7c50\" },\r\n}\r\n"
+        },
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/Contr_odata_import",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Contr_odata_import"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add classification to resource \"FIS - CHANGE CUSTOMER LINE ITEMS\"",
+      "id": "aa0c8c9b-6c6c-430b-8d14-25cd5256ea3f",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\r\n    \"Description\": \"Abcd\",\r\n    \"MANUALOWNER\": [{ \"Id\": \"1003104\" }],\r\n    \"CLT_TAGS\": [{ \"UId\": \"1934ecce-682c-498c-b43c-81f5ea9e2c9c\" }]\r\n}"
+        },
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/Resource(1022427)",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "Resource(1022427)"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Retrieve Systems",
+      "id": "1f36cac9-3594-4723-a710-34fc5ee14792",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://enterpriseserver/OData/DataObjects/System",
+          "protocol": "http",
+          "host": [
+            "enterpriseserver"
+          ],
+          "path": [
+            "OData",
+            "DataObjects",
+            "System"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "ntlm",
+    "ntlm": [
+      {
+        "key": "password",
+        "value": "otn1!IAGvendor",
+        "type": "string"
+      },
+      {
+        "key": "username",
+        "value": "corporate\\demoadm",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "cab95274-ced6-46a3-9a54-2eafa7fc1bbb",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "6a06f807-1869-46f7-802d-2055eed5c5be",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,450 @@
+{
+  "info": {
+    "_postman_id": "e214dfe4-9bd7-4a51-bb1f-0a93c335ac7d",
+    "name": "SCIM Playground",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get Users",
+          "id": "a2a40741-9b92-4c10-8bc0-550fed7f2b38",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/scim+json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.scim.dev/scim/v2/Users?attributes=id,userName",
+              "protocol": "https",
+              "host": [
+                "api",
+                "scim",
+                "dev"
+              ],
+              "path": [
+                "scim",
+                "v2",
+                "Users"
+              ],
+              "query": [
+                {
+                  "key": "attributes",
+                  "value": "id,userName"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Users - Pagination",
+          "id": "ad90f773-3148-4aef-8e8c-95a017e6c857",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/scim+json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.scim.dev/scim/v2/Users?startIndex=10&count=5",
+              "protocol": "https",
+              "host": [
+                "api",
+                "scim",
+                "dev"
+              ],
+              "path": [
+                "scim",
+                "v2",
+                "Users"
+              ],
+              "query": [
+                {
+                  "key": "startIndex",
+                  "value": "10"
+                },
+                {
+                  "key": "count",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Users - With groups",
+          "id": "6bdedf2c-b4ff-4da4-a991-32236ab83d35",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/scim+json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.scim.dev/scim/v2/Users?attributes=groups",
+              "protocol": "https",
+              "host": [
+                "api",
+                "scim",
+                "dev"
+              ],
+              "path": [
+                "scim",
+                "v2",
+                "Users"
+              ],
+              "query": [
+                {
+                  "key": "attributes",
+                  "value": "groups"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Users - Filtering",
+          "id": "3d852157-f82f-4811-8896-b51fbaed9a92",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/scim+json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.scim.dev/scim/v2/Users?filter=userName sw \"john\"",
+              "protocol": "https",
+              "host": [
+                "api",
+                "scim",
+                "dev"
+              ],
+              "path": [
+                "scim",
+                "v2",
+                "Users"
+              ],
+              "query": [
+                {
+                  "key": "filter",
+                  "value": "userName sw \"john\""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "1. Create User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "a0c7ceb6-3975-414b-aa70-327cc957a089",
+                "exec": [
+                  "pm.globals.set(\"user_id\", pm.response.json().id);"
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "id": "5aac127d-8667-4c9e-afa4-202c6114732c",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/scim+json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"schemas\": [\n        \"urn:ietf:params:scim:schemas:core:2.0:User\"\n    ],\n    \"externalId\": \"bjensen\",\n    \"name\": {\n        \"formatted\": \"Ms. Barbara J Jensen III\",\n        \"familyName\": \"Jensen\",\n        \"givenName\": \"Barbara\"\n    },\n    \"active\": true,\n    \"emails\": [\n        {\n            \"value\": \"barbara.jensen@example.com\"\n        }\n    ],\n    \"userName\": \"bjensen\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.scim.dev/scim/v2/Users",
+              "protocol": "https",
+              "host": [
+                "api",
+                "scim",
+                "dev"
+              ],
+              "path": [
+                "scim",
+                "v2",
+                "Users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "2. Get Single User",
+          "id": "32acb235-74af-4cb7-80dd-a196c644a52a",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/scim+json"
+              }
+            ],
+            "url": {
+              "raw": "https://api.scimserver.local/scim/v2/Users/{{user_id}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "scimserver",
+                "local"
+              ],
+              "path": [
+                "scim",
+                "v2",
+                "Users",
+                "{{user_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "3. Update User",
+          "id": "f94a63dd-7f48-4808-ab96-0c19536a1ea8",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/scim+json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"schemas\": [\n        \"urn:ietf:params:scim:api:messages:2.0:PatchOp\"\n    ],\n    \"Operations\": [\n        {\n            \"op\": \"replace\",\n            \"path\": \"name.givenName\",\n            \"value\": \"Barbara\"\n        }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.scim.dev/scim/v2/Users/{{user_id}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "scim",
+                "dev"
+              ],
+              "path": [
+                "scim",
+                "v2",
+                "Users",
+                "{{user_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. Replace User",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "4c51eee2-eb20-4016-a495-1a39b62ffb04",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "id": "8d212546-9bb2-4fc9-a55e-ce018062b200",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/scim+json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"schemas\": [\n        \"urn:ietf:params:scim:schemas:core:2.0:User\"\n    ],\n    \"externalId\": \"jcleese\",\n    \"name\": {\n        \"formatted\": \"Mr. John Cleese\",\n        \"familyName\": \"Cleese\",\n        \"givenName\": \"John\"\n    },\n    \"emails\": [\n        {\n            \"value\": \"john.cleese@example.com\"\n        }\n    ],\n    \"userName\": \"jcleese\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.scim.dev/scim/v2/Users/{{user_id}}",
+              "protocol": "https",
+              "host": [
+                "api",
+                "scim",
+                "dev"
+              ],
+              "path": [
+                "scim",
+                "v2",
+                "Users",
+                "{{user_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "dc5f7414-5ddb-41e2-b555-3cbfb836ed55"
+    },
+    {
+      "name": "Groups",
+      "item": [
+        {
+          "name": "Get Groups",
+          "id": "17aeb622-6fa9-48dd-ad31-2682547784b0",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.scim.dev/scim/v2/Groups",
+              "protocol": "https",
+              "host": [
+                "api",
+                "scim",
+                "dev"
+              ],
+              "path": [
+                "scim",
+                "v2",
+                "Groups"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Groups with members",
+          "id": "1277ef40-0319-4b3d-843a-e259fbbe415a",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.scim.dev/scim/v2/Groups?attributes=members",
+              "protocol": "https",
+              "host": [
+                "api",
+                "scim",
+                "dev"
+              ],
+              "path": [
+                "scim",
+                "v2",
+                "Groups"
+              ],
+              "query": [
+                {
+                  "key": "attributes",
+                  "value": "members"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Groups",
+          "id": "9e2562d9-2671-4c98-8141-e06ceed16764",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"schemas\": [\n        \"urn:ietf:params:scim:schemas:core:2.0:Group\"\n    ],\n    \"name\": \"administrators\",\n    \"displayName\": \"Administrators\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://api.scim.dev/scim/v2/Groups/scim/v2/Groups",
+              "protocol": "https",
+              "host": [
+                "api",
+                "scim",
+                "dev"
+              ],
+              "path": [
+                "scim",
+                "v2",
+                "Groups",
+                "scim",
+                "v2",
+                "Groups"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "6dce6f19-a12a-488e-acbe-2d9b1c17f29e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "GEmIUfxBeeM7RpDUL4WslOjiFmzVDml8oZgbf6TrIaP2Yp7KuX6rRYr3i0sn",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "ee2e551f-a3f4-465e-b595-494f2e16a0ad",
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "6707a3aa-3602-4117-bef4-37453b622e5b",
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

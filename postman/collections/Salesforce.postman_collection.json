@@ -1,0 +1,152 @@
+{
+  "info": {
+    "_postman_id": "c755a028-41dc-4ab1-892f-3bb4f3b67e15",
+    "name": "Salesforce",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Salesforce Users",
+      "id": "e794e2e6-c12c-40f2-beba-95c3bb3d331a",
+      "request": {
+        "auth": {
+          "type": "oauth2",
+          "oauth2": [
+            {
+              "key": "accessToken",
+              "value": "00D1t000000oifz!AQ0AQHvwAoDIm4aLfeGaPJ6v0q98kloxyyuQiSg_DzDda76Ad5.xFsPQFjG3heTJpPD4xUtPJm4N1RHiHBwfnQXQ1S0HP24H",
+              "type": "string"
+            },
+            {
+              "key": "tokenType",
+              "value": "Bearer",
+              "type": "string"
+            },
+            {
+              "key": "addTokenTo",
+              "value": "header",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "https://eu16.salesforce.com/services/data/v40.0/query?q=SELECT+id,Name,IsActive,Email,Alias,Username+from+User",
+          "protocol": "https",
+          "host": [
+            "eu16",
+            "salesforce",
+            "com"
+          ],
+          "path": [
+            "services",
+            "data",
+            "v40.0",
+            "query"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "SELECT+id,Name,IsActive,Email,Alias,Username+from+User"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Salesforce Resources",
+      "id": "c3a95f04-0679-423f-9b82-22c925d71eaa",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "password",
+        "value": "l@ng$am08",
+        "type": "string"
+      },
+      {
+        "key": "client_authentication",
+        "value": "body",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "password_credentials",
+        "type": "string"
+      },
+      {
+        "key": "username",
+        "value": "mku.salesforce@hotmail.com",
+        "type": "string"
+      },
+      {
+        "key": "useBrowser",
+        "value": false,
+        "type": "boolean"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "https://www.getpostman.com/oauth2/callback",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://test.salesforce.com/services/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "clientSecret",
+        "value": "D3C8D0952569CB4BC86F641BD78C350DE3CAA587E3B56F92EB32FE7D941479B8",
+        "type": "string"
+      },
+      {
+        "key": "clientId",
+        "value": "3MVG9SOw8KERNN0_nxV.Jjcb1.4Y4xN70U.Z3s4Wd8wO2EnV_iTsYvo6bh18PNyaKVYZLUZhdeQ==",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "f8d96245-6877-4b99-a630-d2cecf133523",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "f93ae5f6-530e-42e5-843e-c40e7a36754d",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
